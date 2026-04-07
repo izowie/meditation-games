@@ -238,7 +238,7 @@
   min-height: 320px;
   background: linear-gradient(to bottom, #87ceeb 0%, #4682b4 100%);
   border-radius: var(--radius-sm);
-  overflow: hidden;
+  overflow: visible;
 }
 
 [data-theme="dark"] .bottle-game {
@@ -316,6 +316,8 @@
   display: none;
   width: 90%;
   max-width: 320px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .bottle-input-modal.show {
