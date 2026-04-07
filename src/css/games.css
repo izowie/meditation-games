@@ -316,8 +316,9 @@
   display: none;
   width: 90%;
   max-width: 320px;
-  max-height: 70vh;
+  max-height: 60vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .bottle-input-modal.show {
