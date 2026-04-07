@@ -317,7 +317,7 @@
   display: none;
   width: 90%;
   max-width: 320px;
-  max-height: 60vh;
+  max-height: calc(100% - 32px);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
