@@ -41,6 +41,7 @@
   grid-column: 1 / -1;
   transform: none;
   box-shadow: var(--shadow-xl);
+  overflow: visible;
 }
 
 .game-card:focus-visible {
@@ -307,6 +308,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-sizing: border-box;
   background: var(--card-bg);
   padding: var(--spacing-lg);
   border-radius: var(--radius);
