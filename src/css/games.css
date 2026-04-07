@@ -180,7 +180,6 @@
 .breath-circle {
   position: absolute;
   border-radius: 50%;
-  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .breath-circle-outer {

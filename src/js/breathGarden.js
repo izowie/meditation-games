@@ -109,6 +109,12 @@ function render() {
     part.style.transition = 'opacity 0.8s ease';
   });
 
+  // 设置初始缩放值
+  outerCircle.style.transform = 'scale(0.6)';
+  if (innerCircle) {
+    innerCircle.style.transform = 'scale(0.8)';
+  }
+
   resetBtn.addEventListener('click', reset);
 }
 
@@ -149,6 +155,11 @@ function animate() {
       break;
 
     case PHASES.HOLD:
+      // 屏气阶段保持大小不变
+      outerCircle.style.transform = `scale(1.3)`;
+      if (innerCircle) {
+        innerCircle.style.transform = `scale(1.2)`;
+      }
       if (elapsed >= TIMINGS.HOLD) {
         state.phase = PHASES.EXHALE;
         state.startTime = Date.now();
