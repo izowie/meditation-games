@@ -317,7 +317,8 @@
   display: none;
   width: 90%;
   max-width: 320px;
-  max-height: calc(100% - 32px);
+  /* top 50% + translate -50% 占了一半高度，所以max-height要减去足够空间 */
+  max-height: calc(100% - 2rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
