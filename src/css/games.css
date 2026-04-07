@@ -1,0 +1,678 @@
+/* 游戏网格布局 - 非对称Bento风格 */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl) var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 游戏卡片基础样式 */
+.game-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transform: translateZ(0);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.1s; }
+.game-card:nth-child(2) { animation-delay: 0.2s; }
+.game-card:nth-child(3) { animation-delay: 0.3s; }
+.game-card:nth-child(4) { animation-delay: 0.4s; }
+.game-card:nth-child(5) { animation-delay: 0.5s; }
+
+.game-card:hover {
+  background: var(--card-bg-hover);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  border-color: var(--primary-light);
+}
+
+.game-card.expanded {
+  grid-column: 1 / -1;
+  transform: none;
+  box-shadow: var(--shadow-xl);
+}
+
+.game-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-lg);
+}
+
+/* 非对称Bento布局 - 桌面端 */
+@media (min-width: 1024px) {
+  .game-card:nth-child(1) { grid-column: span 8; }  /* 呼吸花园 - 宽 */
+  .game-card:nth-child(2) { grid-column: span 4; }  /* 漂流瓶 - 窄 */
+  .game-card:nth-child(3) { grid-column: span 5; }  /* 平静水滴 - 中 */
+  .game-card:nth-child(4) { grid-column: span 7; }  /* 正念灯塔 - 宽 */
+  .game-card:nth-child(5) { grid-column: span 12; } /* 情绪调色盘 - 全宽 */
+}
+
+/* 平板 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .game-card:nth-child(1),
+  .game-card:nth-child(2),
+  .game-card:nth-child(3),
+  .game-card:nth-child(4) {
+    grid-column: span 6;
+  }
+  .game-card:nth-child(5) {
+    grid-column: span 12;
+  }
+  .games-grid {
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+}
+
+/* 移动端 - 单列 */
+@media (max-width: 767px) {
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+  .game-card {
+    grid-column: span 1 !important;
+  }
+}
+
+.card-header {
+  padding: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.card-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.game-card:hover .card-icon {
+  transform: scale(1.08) rotate(5deg);
+}
+
+.card-header h2 {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.card-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow);
+  padding: 0 var(--spacing-lg);
+}
+
+.game-card.expanded .card-content {
+  max-height: 2000px;
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+}
+
+/* ========== 呼吸花园 ========== */
+.breath-garden {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #f0f8f0 0%, #d9e8d0 100%);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .breath-garden {
+  background: linear-gradient(to bottom, #1a2f26 0%, #0f1a16 100%);
+}
+
+.breath-guide {
+  font-size: var(--text-3xl);
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  z-index: 10;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .breath-guide {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.breath-circle-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breath-circle {
+  position: absolute;
+  border-radius: 50%;
+  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.breath-circle-outer {
+  width: 180px;
+  height: 180px;
+  background: rgba(166, 209, 193, 0.35);
+  transform: scale(0.6);
+}
+
+.breath-circle-inner {
+  width: 110px;
+  height: 110px;
+  background: rgba(245, 184, 149, 0.45);
+}
+
+.plant-container {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.plant {
+  width: 90px;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.petal {
+  position: absolute;
+  background: #ffb7c5;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fall linear forwards;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+[data-theme="dark"] .petal {
+  background: #ff97a5;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(320px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ========== 思绪漂流瓶 ========== */
+.bottle-game {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  background: linear-gradient(to bottom, #87ceeb 0%, #4682b4 100%);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .bottle-game {
+  background: linear-gradient(to bottom, #2a4a6a 0%, #1a3045 100%);
+}
+
+.water-surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+.bottle {
+  position: absolute;
+  width: 44px;
+  height: 66px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 12px 12px 22px 22px;
+  cursor: pointer;
+  animation: float 4s ease-in-out infinite;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bottle::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 6px 6px 0 0;
+}
+
+.bottle .bottle-text {
+  position: absolute;
+  top: 12px;
+  left: 6px;
+  right: 6px;
+  font-size: var(--text-xs);
+  color: var(--neutral-700);
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.add-bottle-btn {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 10;
+}
+
+.bottle-input-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--card-bg);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 20;
+  display: none;
+  width: 90%;
+  max-width: 320px;
+}
+
+.bottle-input-modal.show {
+  display: block;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.bottle-input-modal h3 {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--text-lg);
+  font-weight: 500;
+}
+
+.bottle-input-modal textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  resize: none;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.bottle-input-modal textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.bottle-input-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  justify-content: flex-end;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  animation: rippleSpread 2.5s ease-out forwards;
+}
+
+@keyframes rippleSpread {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+/* ========== 平静水滴 ========== */
+.calm-drop {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  background: linear-gradient(to bottom, #87c0e0 0%, #5a9fd1 100%);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .calm-drop {
+  background: linear-gradient(to bottom, #2a4a6a 0%, #1a3550 100%);
+}
+
+.cdrop-ripple {
+  position: absolute;
+  border: 3px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.cdrop-info {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--card-bg);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+/* ========== 正念灯塔 ========== */
+.mindful-lighthouse {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  background: linear-gradient(to bottom, #0a1428 0%, #1a3a5c 100%);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+[data-theme="dark"] .mindful-lighthouse {
+  background: linear-gradient(to bottom, #050a14 0%, #0a1a2e 100%);
+}
+
+/* 添加星空背景 */
+.mindful-lighthouse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 60px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 50px 50px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(2px 2px at 90px 10px, rgba(255,255,255,0.5), transparent);
+  background-size: 200px 200px;
+  opacity: 0.5;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
+
+.lighthouse-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 110px;
+  background: #4a5a6a;
+  border-radius: 12px 12px 0 0;
+  z-index: 5;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.lighthouse-top {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 32px;
+  background: #6a7a8a;
+  border-radius: 50% 50% 0 0;
+  z-index: 6;
+}
+
+.light-beam {
+  position: absolute;
+  bottom: 132px;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  transform-origin: bottom center;
+  background: conic-gradient(from 0deg at 50% 100%, transparent 0deg, rgba(255, 255, 200, 0.45) 0deg, rgba(255, 255, 200, 0.45) 35deg, transparent 35deg);
+  z-index: 2;
+  animation: rotateBeam 18s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 200, 0.3));
+}
+
+.ml-progress {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.ml-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ffed4e);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.ml-status {
+  position: absolute;
+  top: 32px;
+  left: 16px;
+  color: white;
+  font-size: var(--text-sm);
+  z-index: 10;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ml-complete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, #ffecd2 0%, #fcb69f 100%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+}
+
+[data-theme="dark"] .ml-complete {
+  background: linear-gradient(to bottom, #2a1f1a 0%, #4a3026 100%);
+}
+
+.ml-complete.show {
+  display: flex;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.ml-complete-text {
+  color: #5a4a42;
+  font-size: var(--text-3xl);
+  font-weight: 400;
+}
+
+[data-theme="dark"] .ml-complete-text {
+  color: #ffecd2;
+}
+
+@keyframes rotateBeam {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+/* ========== 情绪调色盘 ========== */
+.mood-palette {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+[data-theme="dark"] .mood-palette {
+  background: transparent;
+}
+
+.mood-canvas-container {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+#moodCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+  background: linear-gradient(to bottom right, var(--neutral-50) 0%, var(--neutral-100) 100%);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-normal);
+}
+
+[data-theme="dark"] #moodCanvas {
+  background: linear-gradient(to bottom right, var(--neutral-800) 0%, var(--neutral-900) 100%);
+}
+
+.color-palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+}
+
+.color-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.color-swatch.selected {
+  border-color: var(--text-primary);
+  transform: scale(1.15);
+  box-shadow: var(--shadow-md);
+}
+
+.palette-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.brush-size-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1;
+  min-width: 150px;
+}
+
+.brush-size-control label {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.brush-size-control input[type="range"] {
+  flex: 1;
+  max-width: 120px;
+  accent-color: var(--primary);
+}
+
+.palette-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.palette-buttons .btn {
+  padding: 8px 16px;
+  font-size: var(--text-sm);
+}
+
+/* 情绪颜色 */
+.color-calm { background: #a6d1c1; }
+.color-joy { background: #ffd93d; }
+.color-anxiety { background: #ff6b6b; }
+.color-sadness { background: #6b8cae; }
+.color-tired { background: #9f9f9f; }
+.color-excited { background: #ff8dc7; }
+.color-anger { background: #ff5757; }

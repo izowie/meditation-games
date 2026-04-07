@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Bash(npx vitest:*)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(pkill:*)",
+      "Bash(netstat -tlnp)",
+      "Bash(curl -s http://localhost:2450)",
+      "mcp__plugin_ecc_playwright__browser_navigate",
+      "mcp__plugin_ecc_playwright__browser_take_screenshot",
+      "Bash(echo $GITHUB_TOKEN)"
+    ]
+  }
+}

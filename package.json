@@ -1,0 +1,27 @@
+{
+  "name": "meditation-games",
+  "version": "1.0.0",
+  "description": "Five relaxing meditation mini-games",
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "meditation",
+    "relaxation",
+    "games"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.1",
+    "jsdom": "^29.0.1",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}

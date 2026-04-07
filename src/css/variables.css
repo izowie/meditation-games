@@ -1,0 +1,108 @@
+:root {
+  /* 主色调 - 温暖柔和的自然色系 */
+  --primary: #f0b98d;
+  --primary-dark: #e09e6a;
+  --primary-light: #ffebd8;
+  --secondary: #94c7b0;
+  --secondary-light: #c1e7d9;
+  --accent: #b7a3d6;
+  --accent-light: #e0d7f0;
+
+  /* 中性色阶 - 更柔和的过渡 */
+  --neutral-50: #faf8f6;
+  --neutral-100: #f5f1ed;
+  --neutral-200: #e8e2dc;
+  --neutral-300: #d6cec7;
+  --neutral-400: #b8ada6;
+  --neutral-500: #91857d;
+  --neutral-600: #75675f;
+  --neutral-700: #5a4d46;
+  --neutral-800: #433833;
+  --neutral-900: #2d2420;
+
+  /* 背景色渐变 - 更柔和的曲线 */
+  --bg-start: #fffbf7;
+  --bg-end: #f0f7f4;
+
+  /* 卡片背景 - 更强的毛玻璃效果 */
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-bg-hover: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(255, 255, 255, 0.6);
+
+  /* 文字颜色 */
+  --text-primary: var(--neutral-700);
+  --text-secondary: var(--neutral-500);
+  --text-tertiary: var(--neutral-400);
+  --text-light: var(--neutral-400);
+
+  /* 边框和阴影 - 多层次阴影营造深度 */
+  --border-color: var(--neutral-200);
+  --shadow-xs: 0 2px 8px rgba(90, 74, 66, 0.04);
+  --shadow-sm: 0 4px 16px rgba(90, 74, 66, 0.06);
+  --shadow-md: 0 8px 24px rgba(90, 74, 66, 0.08);
+  --shadow-lg: 0 16px 48px rgba(90, 74, 66, 0.12);
+  --shadow-xl: 0 24px 64px rgba(90, 74, 66, 0.16);
+  --shadow-hover: 0 20px 48px rgba(90, 74, 66, 0.15);
+
+  /* 圆角 - 更自然的尺寸体系 */
+  --radius: 24px;
+  --radius-sm: 16px;
+  --radius-xs: 10px;
+
+  /* 间距 - 更舒适的留白 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* 字体大小 - 更现代的比例 */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.625rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.75rem;
+  --text-5xl: 3.5rem;
+
+  /* 字体 - Inter + Noto Sans SC 优雅组合 */
+  --font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* 动画过渡 - 更自然的缓动 */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 深色模式变量 - 更和谐的深蓝暗色 */
+[data-theme="dark"] {
+  /* 背景色渐变 - 柔和深蓝，不刺眼 */
+  --bg-start: #0f172a;
+  --bg-end: #1e293b;
+
+  /* 卡片背景 */
+  --card-bg: rgba(30, 41, 59, 0.75);
+  --card-bg-hover: rgba(51, 65, 85, 0.9);
+  --card-border: rgba(148, 163, 184, 0.25);
+
+  /* 文字颜色 */
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-light: #64748b;
+
+  /* 边框 */
+  --border-color: rgba(148, 163, 184, 0.2);
+
+  /* 阴影 - 更深更柔和 */
+  --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.8);
+  --shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.75);
+}

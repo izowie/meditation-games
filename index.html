@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冥想花园 - 放松你的身心</title>
+  <meta name="description" content="五个轻松有趣的冥想小游戏，帮助你放松身心，专注当下">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/css/variables.css">
+  <link rel="stylesheet" href="./src/css/main.css">
+  <link rel="stylesheet" href="./src/css/games.css">
+</head>
+<body>
+  <!-- 背景装饰 -->
+  <div class="bg-decoration deco-1"></div>
+  <div class="bg-decoration deco-2"></div>
+  <div class="bg-decoration deco-3"></div>
+
+  <!-- 主题切换按钮 -->
+  <button class="theme-toggle" id="themeToggle" aria-label="切换深色/浅色模式">🌙</button>
+
+  <div class="container">
+    <header class="header">
+      <h1 class="title">冥想花园 🌱</h1>
+      <p class="subtitle">五个轻松的小游戏，帮助你放慢脚步，感受当下</p>
+    </header>
+
+    <main class="games-grid">
+      <!-- 呼吸花园 -->
+      <article class="game-card" data-game="breathGarden" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-header">
+          <div class="card-icon" aria-hidden="true">🌱</div>
+          <div>
+            <h2>呼吸花园</h2>
+            <p class="card-desc">跟随节奏深呼吸，见证种子绽放</p>
+          </div>
+        </div>
+        <div class="card-content"></div>
+      </article>
+
+      <!-- 思绪漂流瓶 -->
+      <article class="game-card" data-game="thoughtBottle" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-header">
+          <div class="card-icon" aria-hidden="true">🍼</div>
+          <div>
+            <h2>思绪漂流瓶</h2>
+            <p class="card-desc">放下杂念，让它们随漂流瓶漂走</p>
+          </div>
+        </div>
+        <div class="card-content"></div>
+      </article>
+
+      <!-- 平静水滴 -->
+      <article class="game-card" data-game="calmDrop" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-header">
+          <div class="card-icon" aria-hidden="true">💧</div>
+          <div>
+            <h2>平静水滴</h2>
+            <p class="card-desc">点击湖面，感受涟漪慢慢扩散</p>
+          </div>
+        </div>
+        <div class="card-content"></div>
+      </article>
+
+      <!-- 正念灯塔 -->
+      <article class="game-card" data-game="mindfulLighthouse" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-header">
+          <div class="card-icon" aria-hidden="true">🏮</div>
+          <div>
+            <h2>正念灯塔</h2>
+            <p class="card-desc">追随光束，训练专注力</p>
+          </div>
+        </div>
+        <div class="card-content"></div>
+      </article>
+
+      <!-- 情绪调色盘 -->
+      <article class="game-card" data-game="moodPalette" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-header">
+          <div class="card-icon" aria-hidden="true">🎨</div>
+          <div>
+            <h2>情绪调色盘</h2>
+            <p class="card-desc">用色彩画出你此刻的心情</p>
+          </div>
+        </div>
+        <div class="card-content"></div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>在这里，慢慢来，会比较快 💛</p>
+    </footer>
+  </div>
+
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>
