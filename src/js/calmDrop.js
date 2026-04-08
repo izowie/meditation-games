@@ -119,6 +119,11 @@ function addRipple(x, y, delay = 0) {
   ripple.element = el;
   state.ripples.push(ripple);
 
+  // 如果动画没有在运行，重新启动动画循环
+  if (!state.animationId) {
+    animate();
+  }
+
   return ripple;
 }
 
