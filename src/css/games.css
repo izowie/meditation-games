@@ -41,6 +41,7 @@
   grid-column: 1 / -1;
   transform: none;
   box-shadow: var(--shadow-xl);
+  overflow: visible;
 }
 
 .game-card:focus-visible {
@@ -236,9 +237,10 @@
   position: relative;
   width: 100%;
   min-height: 320px;
+  padding: 2rem 0;
   background: linear-gradient(to bottom, #87ceeb 0%, #4682b4 100%);
   border-radius: var(--radius-sm);
-  overflow: hidden;
+  overflow: visible;
 }
 
 [data-theme="dark"] .bottle-game {
@@ -302,25 +304,47 @@
 }
 
 .bottle-input-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: none;
+  /* 使用 CSS Grid 完美居中 */
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.bottle-input-modal.show {
+  display: grid;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.bottle-input-modal > .modal-content {
+  box-sizing: border-box;
   background: var(--card-bg);
   padding: var(--spacing-lg);
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  z-index: 20;
-  display: none;
-  width: 90%;
+  width: 100%;
   max-width: 320px;
+  /* 使用 Grid 布局确保内容自适应，按钮不会被遮挡 */
+  max-height: min(calc(100vh - 2rem), 80vh);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--spacing-md);
+  overflow: hidden;
 }
 
-.bottle-input-modal.show {
-  display: block;
-  animation: fadeInUp 0.3s ease forwards;
+/* 让文本域区域可以滚动，按钮始终可见 */
+.bottle-input-modal .modal-content > :last-child {
+  margin-top: 0;
 }
 
 .bottle-input-modal h3 {
@@ -332,6 +356,7 @@
 .bottle-input-modal textarea {
   width: 100%;
   min-height: 80px;
+  max-height: 200px;
   padding: var(--spacing-md);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
@@ -341,6 +366,7 @@
   font-size: var(--text-sm);
   resize: none;
   transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-y: auto;
 }
 
 .bottle-input-modal textarea:focus {
